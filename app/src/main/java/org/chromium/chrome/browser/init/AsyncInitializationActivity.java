@@ -397,7 +397,7 @@ public abstract class AsyncInitializationActivity extends AppCompatActivity impl
      * @return Whether or not the user needs to go through First Run before using this Activity.
      */
     protected boolean requiresFirstRunToBeCompleted(Intent intent) {
-        return true;
+        return false;
     }
 
     /**

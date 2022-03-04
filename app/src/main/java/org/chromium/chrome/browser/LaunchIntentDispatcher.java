@@ -201,10 +201,10 @@ public class LaunchIntentDispatcher implements IntentHandler.IntentHandlerDelega
         }
 
         // Check if we should push the user through First Run.
-        if (FirstRunFlowSequencer.launch(mActivity, mIntent, false /* requiresBroadcast */,
-                    false /* preferLightweightFre */)) {
+        /*if (FirstRunFlowSequencer.launch(mActivity, mIntent, false *//* requiresBroadcast *//*,
+                    false *//* preferLightweightFre *//*)) {
             return Action.FINISH_ACTIVITY;
-        }
+        }*/
 
         // Check if we should launch the ChromeTabbedActivity.
         if (!mIsCustomTabIntent && !FeatureUtilities.isDocumentMode(mActivity)) {
