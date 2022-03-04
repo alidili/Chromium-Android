@@ -123,7 +123,7 @@ public class ToolbarControlContainer extends OptimizedFrameLayout implements Con
             // On tablet, draw a fake tab strip and toolbar until the compositor is
             // ready to draw the real tab strip. (On phone, the toolbar is made entirely
             // of Android views, which are already initialized.)
-            setBackgroundResource(R.drawable.toolbar_background);
+            //setBackgroundResource(R.drawable.toolbar_background);
         }
     }
 

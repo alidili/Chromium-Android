@@ -1,24 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2015 The Chromium Authors. All rights reserved.
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright 2015 The Chromium Authors. All rights reserved.
      Use of this source code is governed by a BSD-style license that can be
      found in the LICENSE file. -->
 
-<merge 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <org.chromium.chrome.browser.coordinator.CoordinatorLayoutForPointer
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_marginTop="-96dp"
+        android:layout_weight="1">
 
         <org.chromium.chrome.browser.compositor.CompositorViewHolder
             android:id="@+id/compositor_view_holder"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-       <FrameLayout
+        <FrameLayout
             android:id="@+id/overview_list_layout_holder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -32,25 +31,25 @@
 
         <ViewStub
             android:id="@+id/keyboard_accessory_stub"
-            android:inflatedId="@+id/keyboard_accessory"
-            android:layout="@layout/keyboard_accessory"
-            android:layout_height="@dimen/keyboard_accessory_height_with_shadow"
             android:layout_width="match_parent"
-            android:layout_gravity="start|bottom"/>
+            android:layout_height="@dimen/keyboard_accessory_height_with_shadow"
+            android:layout_gravity="start|bottom"
+            android:inflatedId="@+id/keyboard_accessory"
+            android:layout="@layout/keyboard_accessory" />
 
         <ViewStub
             android:id="@+id/keyboard_accessory_sheet_stub"
-            android:layout="@layout/keyboard_accessory_sheet"
-            android:layout_height="@dimen/keyboard_accessory_sheet_height"
             android:layout_width="match_parent"
-            android:layout_gravity="start|bottom"/>
+            android:layout_height="@dimen/keyboard_accessory_sheet_height"
+            android:layout_gravity="start|bottom"
+            android:layout="@layout/keyboard_accessory_sheet" />
 
         <ViewStub
             android:id="@+id/bottombar_stub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-4dp"
             android:layout_gravity="start|bottom"
+            android:layout_marginTop="-4dp"
             android:inflatedId="@+id/bottombar"
             android:layout="@layout/custom_tabs_bottombar" />
 
@@ -71,9 +70,9 @@
             android:id="@+id/omnibox_results_container_stub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_anchor="@id/control_container"
             android:inflatedId="@+id/omnibox_results_container"
-            android:layout="@layout/omnibox_results_container" />
+            android:layout="@layout/omnibox_results_container"
+            app:layout_anchor="@id/control_container" />
 
         <!-- Toolbar size area painted black to avoid the action bar showing the window background -->
         <View
@@ -98,10 +97,10 @@
 
         <ViewStub
             android:id="@+id/empty_container_stub"
-            android:inflatedId="@+id/empty_container"
-            android:layout="@layout/empty_background_view_tablet"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:inflatedId="@+id/empty_container"
+            android:layout="@layout/empty_background_view_tablet" />
     </org.chromium.chrome.browser.coordinator.CoordinatorLayoutForPointer>
 
     <!-- This empty view is used as the anchor for custom menu -->
@@ -109,8 +108,7 @@
         android:id="@+id/menu_anchor_stub"
         android:layout_width="0px"
         android:layout_height="0px"
-        android:layout_gravity="bottom|start"
-        />
+        android:layout_gravity="bottom|start" />
 
     <!-- This empty view is used as the anchor for navigation history popup -->
     <View

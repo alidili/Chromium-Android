@@ -1842,7 +1842,7 @@ public class ChromeTabbedActivity
             return true;
         }
 
-        final boolean shouldCloseTab = backShouldCloseTab(currentTab);
+        final boolean shouldCloseTab = true;
 
         // Minimize the app if either:
         // - we decided not to close the tab
