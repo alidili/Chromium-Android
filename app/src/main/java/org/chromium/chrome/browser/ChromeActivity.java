@@ -186,8 +186,6 @@ import org.chromium.webapk.lib.client.WebApkValidator;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -1797,6 +1795,12 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
         return modelSelector.getCurrentModel();
     }
 
+    public int getTabsCount() {
+        TabModelSelector modelSelector = getTabModelSelector();
+        if (modelSelector == null) return 0;
+        return modelSelector.getTotalTabCount();
+    }
+
     /**
      * DEPRECATED: Instead, use/hold a reference to {@link #mActivityTabProvider}. See
      * https://crbug.com/871279 for more details.
@@ -2081,39 +2085,26 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
         }
     }
 
-    private boolean mExitApp;
-
     @Override
     public final void onBackPressed() {
-        if (mExitApp) {
-            if (mNativeInitialized) RecordUserAction.record("SystemBack");
+        if (mNativeInitialized) RecordUserAction.record("SystemBack");
 
-            TextBubble.dismissBubbles();
-            if (VrModuleProvider.getDelegate().onBackPressed()) return;
-            if (mCompositorViewHolder != null) {
-                LayoutManager layoutManager = mCompositorViewHolder.getLayoutManager();
-                if (layoutManager != null && layoutManager.onBackPressed()) return;
-            }
+        TextBubble.dismissBubbles();
+        if (VrModuleProvider.getDelegate().onBackPressed()) return;
+        if (mCompositorViewHolder != null) {
+            LayoutManager layoutManager = mCompositorViewHolder.getLayoutManager();
+            if (layoutManager != null && layoutManager.onBackPressed()) return;
+        }
 
-            SelectionPopupController controller = getSelectionPopupController();
-            if (controller != null && controller.isSelectActionBarShowing()) {
-                controller.clearSelection();
-                return;
-            }
-
-            if (handleBackPressed()) return;
-
-            super.onBackPressed();
+        SelectionPopupController controller = getSelectionPopupController();
+        if (controller != null && controller.isSelectActionBarShowing()) {
+            controller.clearSelection();
             return;
         }
-        Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
-        mExitApp = true;
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                mExitApp = false;
-            }
-        }, 2000);
+
+        if (handleBackPressed()) return;
+
+        super.onBackPressed();
     }
 
     @Override
